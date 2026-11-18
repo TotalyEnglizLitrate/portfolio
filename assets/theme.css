@@ -113,3 +113,51 @@ header nav a { white-space: nowrap; }
   #theme-toggle { grid-column: 2; }
   #made-with { grid-column: 1 / -1; grid-row: 2; text-align: right; }
 }
+
+/* 404 page: the cookie and its two buttons */
+.lost {
+  text-align: center;
+}
+.lost .cookie {
+  display: block;
+  margin: 0 auto 1rem;
+  width: 9rem;
+  height: 9rem;
+  transition: opacity 0.35s ease;
+}
+.lost .cookie.gone {
+  opacity: 0; /* keeps its space, so the text below doesn't jump */
+}
+.lost-buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 1.5rem;
+}
+.btn,
+a.btn,
+a.btn:link,
+a.btn:visited {
+  display: inline-block;
+  padding: 0.3rem 1.2rem;
+  font: inherit;
+  font-size: 1.4rem;
+  line-height: 1.6;
+  color: inherit;
+  background: none;
+  background-image: none;
+  text-shadow: none;
+  text-decoration: none;
+  border: 1px solid currentColor;
+  border-radius: 999px;
+  cursor: pointer;
+}
+.btn:hover:not(:disabled),
+.btn:focus-visible {
+  background-color: var(--highlight-weak);
+}
+.btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
