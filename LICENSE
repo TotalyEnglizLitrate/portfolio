@@ -16,6 +16,27 @@ The resume contains personal information and is not covered by the license
 below. No permission is granted to copy, modify, redistribute, or reuse it
 without prior written permission from the copyright holder.
 
+THIRD-PARTY MATERIAL (not covered by the license below; each keeps its own
+terms):
+
+  - assets/tufted.css: from Tufted, Copyright (c) 2025 Vsevolod Shegolev,
+    MIT License (https://github.com/vsheg/tufted).
+  - Icon shapes for phone, mail, GitHub, LinkedIn, link, sun and moon, in
+    link-icons.typ and assets/theme.js: from Feather, Copyright (c) 2013-2023
+    Cole Bemis, MIT License (https://github.com/feathericons/feather).
+  - static/favicon.svg, static/favicon.ico and static/apple-touch-icon.png: the
+    letter shape is from ET Book, Copyright (c) 2015 Dmitry Krasny, Bonnie
+    Scranton, Edward Tufte, MIT License
+    (https://github.com/edwardtufte/et-book).
+  - Brand icons for Discord, Codeberg, GitLab and SourceHut in link-icons.typ:
+    from Simple Icons, CC0 1.0 (https://github.com/simple-icons/simple-icons).
+    The logos themselves remain trademarks of their respective owners.
+  - Tufte CSS and the ET Book web fonts (loaded from a CDN) and the Latin
+    Modern fonts (downloaded at build time and embedded in the resume PDF) are
+    not part of this repository and keep their own licenses.
+
+The full license texts for the items above are in THIRD_PARTY_NOTICES.md.
+
 =======================================================================
 
 Attribution-ShareAlike 4.0 International
