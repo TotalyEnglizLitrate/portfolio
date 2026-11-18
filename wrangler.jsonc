@@ -5,6 +5,8 @@
   "name": "portfolio",
   "compatibility_date": "2026-11-18",
   "assets": {
-    "directory": "./_site"
+    "directory": "./_site",
+    // Serve 404.html (built from content/404.typ) for unknown URLs
+    "not_found_handling": "404-page"
   }
 }
