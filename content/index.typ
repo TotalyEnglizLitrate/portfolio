@@ -36,7 +36,7 @@ See #link("/projects/")[Projects] for what I've built, or my #link("/resume/")[r
 
 *Cloud infrastructure, Sandbox Labs (intern, 2026).* I helped build a platform where people launch virtual computers for hands-on labs. I made saving and restoring those computers faster, added shareable lab templates, fixed speed and security problems, and helped run it on *Kubernetes*. Built with *Go*, *PostgreSQL* and *Redis* on top of *libvirt/KVM*.
 
-*CTF platform, Edita CTF (2025 from 2025 till date).* I help maintain a website for CTF competitions conducted by the SNUC Coding Club, used by about *1,000 people*. I made it faster, improved UX and made answer submission safer.
+*CTF platform, Edita CTF (from 2025 till date).* I help maintain a website for CTF competitions conducted by the SNUC Coding Club, used by about *1,000 people*. I made it faster, improved UX and made answer submission safer.
 
 == Interests
 
