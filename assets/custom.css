@@ -1,1 +1,37 @@
 /* Modify this file to add your own custom styles */
+
+/* Tufte CSS reserves the right ~40% of the page for margin notes. This site
+   doesn't use them, so let the content fill a centred column instead. */
+body {
+  width: auto;
+  max-width: 64rem;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+hr,
+blockquote p,
+blockquote footer,
+section > p,
+section > footer,
+section > table,
+section > dl,
+section > ol,
+section > ul,
+p,
+ol,
+ul {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+figure,
+pre > code {
+  max-width: 100%;
+  width: 100%;
+}
+
+/* Resume entry titles sit tight against the line below them */
+section div > h4 {
+  margin: 1rem 0 0;
+}
