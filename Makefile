@@ -1,6 +1,10 @@
 # Find all .typ files in content/ that don't start with an underscore in their path
 TYP_FILES := $(shell find content -name '*.typ' -not -path '*/_*')
 
+# The Cool stuff index lists pages from _pages.typ and reads each page's title
+# and summary from its index.typ, so rebuild it when any of them change.
+_site/cool-stuff/index.html: content/cool-stuff/_pages.typ $(wildcard content/cool-stuff/*/index.typ)
+
 # Generate corresponding HTML file paths in _site/
 HTML_FILES := $(patsubst content/%.typ,_site/%.html,$(TYP_FILES))
 

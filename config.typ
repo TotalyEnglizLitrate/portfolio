@@ -36,6 +36,7 @@
         "/": "Home",
         "/resume/": "Resume",
         "/projects/": "Projects",
+        "/cool-stuff/": "Cool stuff",
       ),
       title: "Portfolio",
       css: (
