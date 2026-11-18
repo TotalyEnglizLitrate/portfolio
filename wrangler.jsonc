@@ -1,7 +1,5 @@
 {
   "name": "portfolio",
   "compatibility_date": "2026-11-18",
-  "assets": {
-    "directory": "./_site"
-  }
+  "pages_build_output_dir": "./_site"
 }
