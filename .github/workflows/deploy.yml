@@ -1,8 +1,8 @@
 name: deploy
 
-# On every push to the main branch: tag the commit as <UTC datetime>.<short sha>
-# (e.g. 20261119-010512.e770eae), build the site and deploy it to Cloudflare
-# Pages. Can also be run manually from the Actions tab.
+# On every push to master: build the site, deploy it to Cloudflare Workers
+# (static assets), then tag the commit as <UTC datetime>.<short sha>. Can also
+# be run manually from the Actions tab.
 on:
   push:
     branches: [master]
@@ -20,13 +20,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
-
-      - name: Tag this commit
-        run: |
-          TAG="$(date -u +%Y%m%d-%H%M%S).$(git rev-parse --short=7 HEAD)"
-          echo "Tagging $GITHUB_SHA as $TAG"
-          git tag "$TAG" "$GITHUB_SHA"
-          git push origin "refs/tags/$TAG"
 
       # Installs Typst and caches it, plus the @preview packages imported in
       # the file below (tufted), so repeat runs skip the downloads.
@@ -49,3 +42,12 @@ jobs:
           apiToken: ${{ secrets.CF_WORKERS_TOKEN }}
           accountId: ${{ secrets.CF_ACCOUNT_ID }}
           command: deploy
+
+      # Only after a successful deploy, so a tag always marks a deployed commit.
+      # Format: <UTC datetime>.<short sha>, e.g. 20261119-010512.e770eae
+      - name: Tag the deployed commit
+        run: |
+          TAG="$(date -u +%Y%m%d-%H%M%S).$(git rev-parse --short=7 HEAD)"
+          echo "Tagging $GITHUB_SHA as $TAG"
+          git tag "$TAG" "$GITHUB_SHA"
+          git push origin "refs/tags/$TAG"
