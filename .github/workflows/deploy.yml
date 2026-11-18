@@ -1,0 +1,51 @@
+name: deploy
+
+# On every push to the main branch: tag the commit as <UTC datetime>.<short sha>
+# (e.g. 20261119-010512.e770eae), build the site and deploy it to Cloudflare
+# Pages. Can also be run manually from the Actions tab.
+on:
+  push:
+    branches: [master]
+  workflow_dispatch:
+
+permissions:
+  contents: write # needed to push the tag
+
+concurrency:
+  group: deploy
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Tag this commit
+        run: |
+          TAG="$(date -u +%Y%m%d-%H%M%S).$(git rev-parse --short=7 HEAD)"
+          echo "Tagging $GITHUB_SHA as $TAG"
+          git tag "$TAG" "$GITHUB_SHA"
+          git push origin "refs/tags/$TAG"
+
+      # Installs Typst and caches it, plus the @preview packages imported in
+      # the file below (tufted), so repeat runs skip the downloads.
+      - uses: typst-community/setup-typst@v5
+        with:
+          typst-version: 0.15.1
+          cache-dependency-path: config.typ
+
+      # Latin Modern fonts for the resume PDF (downloaded by `make fonts`).
+      # The key changes if the Makefile (font list/URL) changes.
+      - uses: actions/cache@v6
+        with:
+          path: fonts
+          key: fonts-${{ hashFiles('Makefile') }}
+
+      - run: make html
+
+      - uses: cloudflare/wrangler-action@v4
+        with:
+          apiToken: ${{ secrets.CF_WORKERS_TOKEN }}
+          accountId: ${{ secrets.CF_ACCOUNT_ID }}
+          command: pages deploy _site --project-name=portfolio --branch=main
