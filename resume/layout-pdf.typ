@@ -55,9 +55,11 @@
 #let sublist(..xs) = block(inset: (left: 0pt), list(marker: [∗], indent: 9pt, body-indent: 4.8pt, ..xs.pos()))
 #let note(top: 0pt, body) = block(inset: (left: ind, top: top), small(body))
 
+// The PDF header also lists the personal site; the web page header does not.
+#import "contact.typ": website
 #let header(name, contacts) = align(center)[
   #text(font: ("Latin Modern Roman 12", "New Computer Modern"), size: 17pt, top-edge: 11.9pt, bottom-edge: -5.1pt, weight: "bold")[#name] \
-  #small[#contacts.join([ #bar ])]
+  #small[#(contacts + (website,)).join([ #bar ])]
 ]
 
 #let layout = (
