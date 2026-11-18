@@ -1,5 +1,10 @@
+// Cloudflare Workers config for the static site (assets only, no Worker
+// script). `name` must match the Worker name in the Cloudflare dashboard.
+// The site is built into _site/ by `make html`.
 {
   "name": "portfolio",
   "compatibility_date": "2026-11-18",
-  "pages_build_output_dir": "./_site"
+  "assets": {
+    "directory": "./_site"
+  }
 }
