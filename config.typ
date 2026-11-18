@@ -17,6 +17,9 @@
     #link("https://creativecommons.org/licenses/by-sa/4.0/")[CC BY-SA 4.0],
     except the resume.
   ]
+  #html.elem("div")[
+    Source on #link("https://github.com/TotalyEnglizLitrate/portfolio")[GitHub].
+  ]
   // Moved into the page header by assets/theme.js; stays here without JS.
   #html.elem("div", attrs: (id: "made-with"))[
     Made with #link("https://typst.app/")[Typst] and
