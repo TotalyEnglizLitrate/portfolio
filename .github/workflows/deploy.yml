@@ -36,11 +36,11 @@ jobs:
           cache-dependency-path: config.typ
 
       # Latin Modern fonts for the resume PDF (downloaded by `make fonts`).
-      # The key changes if the Makefile (font list/URL) changes.
+      # The key changes if the Makefile or the font checksums change.
       - uses: actions/cache@v6
         with:
           path: fonts
-          key: fonts-${{ hashFiles('Makefile') }}
+          key: fonts-${{ hashFiles('Makefile', 'fonts.sha256') }}
 
       - run: make html
 

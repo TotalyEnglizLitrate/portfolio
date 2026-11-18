@@ -24,15 +24,32 @@ assets:
 	@# Root-level files (favicon.ico etc.) that browsers look for at /
 	@cp -r static/* _site/
 
-# Latin Modern fonts for the resume PDF (GUST Font License) downloaded on demand into fonts/ (identical to the CTAN files).
-FONT_URL := https://mirrors.ctan.org/fonts/lm/fonts/opentype/public/lm
+# Latin Modern fonts for the resume PDF (GUST Font License). They aren't kept
+# in git; they're downloaded on demand into fonts/ and verified against
+# fonts.sha256, so a bad mirror or a changed file can't alter the PDF.
+# Mirrors are tried in order; mirrors.ctan.org redirects to a random mirror,
+# so it goes last.
+CTAN_LM := fonts/lm/fonts/opentype/public/lm
+FONT_MIRRORS := https://ctan.math.illinois.edu/$(CTAN_LM) \
+                https://mirrors.mit.edu/CTAN/$(CTAN_LM) \
+                https://mirror.las.iastate.edu/CTAN/$(CTAN_LM) \
+                https://mirrors.ctan.org/$(CTAN_LM)
 FONT_NAMES := lmroman12-bold lmroman8-bold lmroman8-italic lmroman8-regular \
               lmroman9-bold lmroman9-italic lmroman9-regular lmromancaps10-regular
 FONT_FILES := $(addprefix fonts/,$(addsuffix .otf,$(FONT_NAMES)))
 
 fonts/%.otf:
 	@mkdir -p fonts
-	curl -fsSL --retry 3 -o $@.tmp $(FONT_URL)/$*.otf && mv $@.tmp $@
+	@want=$$(awk -v f="$@" '$$2==f {print $$1}' fonts.sha256); \
+	for base in $(FONT_MIRRORS); do \
+	  echo "fetching $* from $$base"; \
+	  if curl -fsSL --retry 3 --max-time 120 -o "$@.tmp" "$$base/$*.otf" \
+	     && [ "$$(sha256sum "$@.tmp" | cut -d' ' -f1)" = "$$want" ]; then \
+	    mv "$@.tmp" "$@" && exit 0; \
+	  fi; \
+	  echo "  failed, trying the next mirror" >&2; \
+	done; \
+	rm -f "$@.tmp"; echo "could not download $@ from any mirror" >&2; exit 1
 
 fonts: $(FONT_FILES)
 
