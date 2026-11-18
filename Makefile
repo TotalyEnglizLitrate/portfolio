@@ -24,8 +24,20 @@ assets:
 	@# Root-level files (favicon.ico etc.) that browsers look for at /
 	@cp -r static/* _site/
 
+# Latin Modern fonts for the resume PDF (GUST Font License) downloaded on demand into fonts/ (identical to the CTAN files).
+FONT_URL := https://mirrors.ctan.org/fonts/lm/fonts/opentype/public/lm
+FONT_NAMES := lmroman12-bold lmroman8-bold lmroman8-italic lmroman8-regular \
+              lmroman9-bold lmroman9-italic lmroman9-regular lmromancaps10-regular
+FONT_FILES := $(addprefix fonts/,$(addsuffix .otf,$(FONT_NAMES)))
+
+fonts/%.otf:
+	@mkdir -p fonts
+	curl -fsSL --retry 3 -o $@.tmp $(FONT_URL)/$*.otf && mv $@.tmp $@
+
+fonts: $(FONT_FILES)
+
 # Build the one-page resume PDF into the site assets
-resume:
+resume: $(FONT_FILES)
 	@mkdir -p _site/assets
 	typst compile --font-path fonts resume/resume.typ _site/assets/resume.pdf
 
@@ -33,4 +45,4 @@ resume:
 clean:
 	rm -rf _site/*
 
-.PHONY: html clean assets resume
+.PHONY: html clean assets resume fonts
