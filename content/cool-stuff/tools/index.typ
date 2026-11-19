@@ -19,14 +19,22 @@ The tools I reach for every day, mostly command-line programs, set up through my
 
 - #link("https://textual.textualize.io")[Textual]: a Python framework for building terminal apps (TUIs) with a ton of features I bet you didn't even know was possible in the terminal. I used it for #link("https://github.com/TotalyEnglizLitrate/foodie")[Foodie], #link("https://github.com/TotalyEnglizLitrate/nixcu")[nixcu] and #link("https://github.com/TotalyEnglizLitrate/anywayd")[anywayd].
 - #link("https://neovim.io")[Neovim]: my editor, with a custom setup packaged through Nix. #link("https://zed.dev")[Zed] is my pick when I want something graphical.
+- #link("https://github.com/jesseduffield/lazygit")[lazygit]: a terminal UI for git that's just as good as (if not better than) the GUIs. Staging individual lines, rebasing interactively and resolving conflicts are all a few keypresses instead of a pile of commands.
 - #link("https://typst.app/")[Typst]: a modern alternative to LaTeX. It builds my assignments, resume, other documents and this whole site.
 
 == Nix
 
+Ever run into the "works on my machine" problem? Nix is the answer: deterministic builds that work on every machine. My entire operating system is built this way, and devshells for most of my projects are also handled by it.
+
+The latter also has the added benefit of removing the classic compiled-language headache, where a project's dependencies expect system libraries that are missing or the wrong version on your machine: the devshell pins them all, so it builds the same everywhere, regardless of what exists (or doesn't) system-wide. Anyhoo, here are a few cool Nix tools that I use.
+
 - #link("https://github.com/maralorn/nix-output-monitor")[nix-output-monitor]: turns the wall of text from a Nix build into a live progress tree, much like bootvine.
-- #link("https://github.com/nix-community/stylix")[Stylix]: themes the whole system (colours, fonts, wallpaper) from one place.
+- #link("https://github.com/nix-community/stylix")[Stylix]: themes the whole system (colours, fonts, wallpaper) from one place. Heck, it even themes my TTYs!
 - #link("https://github.com/manic-systems/tack")[tack]: flake-like TOML pins for Nix, fetched lazily. Pins can follow each other like flake inputs do (`nixpkgs.follows`), and its `all_follow` setting makes every input share one nixpkgs, so builds hit the binary cache instead of rebuilding or downloading several copies.
 - #link("https://github.com/nix-community/nixos-cli")[nixos-cli]: a unified replacement for the `nixos-*` tools such as `nixos-rebuild`. Mine builds through nix-output-monitor and shows what changed with nvd.
+- #link("https://github.com/pyproject-nix/uv2nix")[uv2nix]: turns a uv workspace into Nix packages and devshells, so Python projects with native dependencies just work.
+
+You can find more at the #link("https://github.com/nix-community/awesome-nix")[Awesome Nix repository].
 
 == Desktop
 
