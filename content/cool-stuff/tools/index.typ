@@ -4,22 +4,23 @@
 #let summary = "Software, setups and workflows I rely on day to day."
 #show: cool-page.with(title: title, summary: summary)
 
-The tools I reach for every day, mostly command-line programs, set up through my NixOS configuration so every machine of mine behaves the same.
+The tools I use every day, from command-line programs to desktop tweaks. Most are set up through my NixOS configuration so every machine of mine behaves the same; the Windows section at the end covers the exception.
 
 == In the terminal
 
-- #link("https://github.com/sharkdp/bat")[bat]: `cat` with syntax highlighting, line numbers, git changes and paging. I have `cat` aliased to it.
-- #link("https://github.com/ajeetdsouza/zoxide")[zoxide]: a smarter `cd` that learns which directories I visit, so `z proj` jumps straight to the right folder.
-- #link("https://github.com/eza-community/eza")[eza] and #link("https://github.com/sharkdp/fd")[fd]: modern replacements for `ls` and `find`, with icons, colours and saner defaults.
 - #link("https://fishshell.com")[fish] with #link("https://starship.rs")[starship]: the shell I use and the prompt that tells me where I am and what state the repo is in. Yes fish isn't POSIX but it is just so much friendlier (pun un-intended) to use.
+- #link("https://zellij.dev")[zellij]: a terminal multiplexer with panes, tabs and sessions that survive a closed terminal, with a batteries-included approach that makes it friendlier than tmux.
+- #link("https://github.com/sharkdp/bat")[bat]: `cat` with syntax highlighting, line numbers, git changes and paging. I have `cat` aliased to it.
+- #link("https://github.com/eza-community/eza")[eza] and #link("https://github.com/sharkdp/fd")[fd]: modern replacements for `ls` and `find`, with icons, colours and saner defaults.
+- #link("https://github.com/ajeetdsouza/zoxide")[zoxide]: a smarter `cd` that learns which directories I visit, so `z proj` jumps straight to the right folder.
 - #link("https://poppler.freedesktop.org")[poppler-utils]: command-line PDF tools (`pdfunite`, `pdfseparate`, `pdftotext`, `pdftoppm`, `pdfimages`) that have completely replaced iLovePDF for me. Merging, splitting, pulling out text and images, and turning pages into pictures all work offline, with no uploading files to a website.
 - #link("https://codeberg.org/wvhulle/bootvine")[bootvine]: a live tree of the jobs your system is starting during boot and shutdown, on systemd or OpenRC, so you can see what's running and what everything is waiting on instead of a stream of one line logs.
 
 == Building things
 
-- #link("https://textual.textualize.io")[Textual]: a Python framework for building terminal apps (TUIs) with a ton of features I bet you didn't even know was possible in the terminal. I used it for #link("https://github.com/TotalyEnglizLitrate/foodie")[Foodie], #link("https://github.com/TotalyEnglizLitrate/nixcu")[nixcu] and #link("https://github.com/TotalyEnglizLitrate/anywayd")[anywayd].
 - #link("https://neovim.io")[Neovim]: my editor, with a custom setup packaged through Nix. #link("https://zed.dev")[Zed] is my pick when I want something graphical.
 - #link("https://github.com/jesseduffield/lazygit")[lazygit]: a terminal UI for git that's just as good as (if not better than) the GUIs. Staging individual lines, rebasing interactively and resolving conflicts are all a few keypresses instead of a pile of commands.
+- #link("https://textual.textualize.io")[Textual]: a Python framework for building terminal apps (TUIs) with a ton of features I bet you didn't even know was possible in the terminal. I used it for #link("https://github.com/TotalyEnglizLitrate/foodie")[Foodie], #link("https://github.com/TotalyEnglizLitrate/nixcu")[nixcu] and #link("https://github.com/TotalyEnglizLitrate/anywayd")[anywayd].
 - #link("https://typst.app/")[Typst]: a modern alternative to LaTeX. It builds my assignments, resume, other documents and this whole site.
 
 == Nix
@@ -43,16 +44,16 @@ You can find more at the #link("https://github.com/nix-community/awesome-nix")[A
 - #link("https://gitlab.freedesktop.org/rncbc/qpwgraph")[qpwgraph]: a graph view of everything PipeWire is routing. Drag cables between apps and devices to decide where each sound goes. Extremely handy for connecting multiple devices to the same audio source.
 - #link("https://sr.ht/~emersion/kanshi/")[kanshi]: automatic display layouts for Wayland. I define profiles, such as docked with the laptop screen off or the external monitor extended to the right, and it applies the matching one whenever I plug in or unplug a monitor.
 
-== Making Windows usable
-
-When I have to use Windows, these make it bearable.
-
-- #link("https://www.autohotkey.com")[AutoHotkey]: a scripting language for remapping keys and automating anything repetitive, so Windows gets the shortcuts it should have shipped with.
-- #link("https://github.com/Klocman/Bulk-Crap-Uninstaller")[Bulk Crap Uninstaller]: removes unwanted programs in bulk and cleans up the leftover files and registry entries that the regular uninstaller leaves behind.
-- #link("https://windhawk.net")[Windhawk]: a catalogue of small mods for customizing the Windows interface, from the taskbar to the Start menu, without replacing the shell.
-- #link("https://github.com/ChrisTitusTech/winutil")[Chris Titus's WinUtil]: a one-script tool for debloating Windows, applying tweaks and installing apps in one go.
-
 == Websites
 
 - #link("https://time.is")[time.is]: a quick time lookup where the URL is the query. Put a timezone, city or country after the slash, for example #link("https://time.is/Tokyo")[time.is/Tokyo], and you get the current time there.
 - #link("https://bitwarden.garudalinux.org")[bitwarden.garudalinux.org]: a free #link("https://github.com/dani-garcia/vaultwarden")[Vaultwarden] host run by the Garuda Linux project, so you get a Bitwarden-compatible password manager without hosting anything yourself.
+
+== Making Windows usable
+
+When I have to use Windows, these make it bearable.
+
+- #link("https://github.com/ChrisTitusTech/winutil")[Chris Titus's WinUtil]: a one-script tool for debloating Windows, applying tweaks and installing apps in one go.
+- #link("https://github.com/Klocman/Bulk-Crap-Uninstaller")[Bulk Crap Uninstaller]: removes unwanted programs in bulk and cleans up the leftover files and registry entries that the regular uninstaller leaves behind.
+- #link("https://windhawk.net")[Windhawk]: a catalogue of small mods for customizing the Windows interface, from the taskbar to the Start menu, without replacing the shell.
+- #link("https://www.autohotkey.com")[AutoHotkey]: a scripting language for remapping keys and automating anything repetitive, so Windows gets the shortcuts it should have shipped with.
