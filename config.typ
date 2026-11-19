@@ -3,8 +3,17 @@
   make-header, template-figures, template-math, template-notes, template-refs,
 )
 
+#import "resume/contact.typ": name
+
 #let site-url = "https://engliz.dev"
-#let default-description = "Narendra Sampath Kumar's portfolio: resume, projects and cool stuff."
+#let default-description = name.text + "'s portfolio: resume, projects and cool stuff."
+
+// Short form of the name for titles: the first word plus the initial of the
+// second ("Narendra Sampath Kumar" -> "Narendra S").
+#let short-name = {
+  let parts = name.text.split(" ")
+  if parts.len() > 1 { parts.first() + " " + parts.at(1).first() } else { parts.first() }
+}
 
 // Cache-busting: append the file's size to asset URLs, so an edited file is
 // re-fetched instead of served from a browser/CDN cache.
@@ -20,10 +29,10 @@
   style: footer-style,
 ))[
   #if reserved [
-    © 2026 Narendra Sampath Kumar. All rights reserved. This page is excluded
+    © 2026 #name.text. All rights reserved. This page is excluded
     from the site's license.
   ] else [
-    © 2026 Narendra Sampath Kumar. Licensed under
+    © 2026 #name.text. Licensed under
     #link("https://creativecommons.org/licenses/by-sa/4.0/")[CC BY-SA 4.0],
     except the resume. The Makefile, scripts and custom styles are under the
     #link("https://opensource.org/license/mit")[MIT license].
@@ -71,7 +80,7 @@
       html.title(title)
       html.meta(name: "description", content: description)
       meta("property", "og:type", "website")
-      meta("property", "og:site_name", "Narendra S | Engliz")
+      meta("property", "og:site_name", short-name + " | Engliz")
       meta("property", "og:title", title)
       meta("property", "og:description", description)
       if path != none { meta("property", "og:url", site-url + path) }
@@ -94,6 +103,7 @@
 #let template(content, ..args) = {
   let named = args.named()
   let reserved = named.remove("reserved", default: false)
+  let title = named.remove("title", default: none)
   page(
     ..(
       header-links: (
@@ -102,7 +112,9 @@
         "/projects/": "Projects",
         "/cool-stuff/": "Cool stuff",
       ),
-      title: "Narendra S | Engliz",
+      title: if title == none { short-name + " | Engliz" } else {
+        title + " | " + short-name
+      },
       css: (
         "https://cdnjs.cloudflare.com/ajax/libs/tufte-css/1.8.0/tufte.min.css",
         "/assets/tufted.css",
