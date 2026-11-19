@@ -1,4 +1,10 @@
 #import "@preview/tufted:0.1.1"
+#import "@preview/tufted:0.1.1": (
+  make-header, template-figures, template-math, template-notes, template-refs,
+)
+
+#let site-url = "https://engliz.dev"
+#let default-description = "Narendra Sampath Kumar's portfolio: resume, projects and cool stuff."
 
 // Cache-busting: append the file's size to asset URLs, so an edited file is
 // re-fetched instead of served from a browser/CDN cache.
@@ -32,13 +38,63 @@
   ]
 ]
 
+
+// Derived from `tufted-web` in Tufted 0.1.1
+// (https://github.com/vsheg/tufted, src/tufted.typ).
+// Copyright (c) 2025 Vsevolod Shegolev. MIT License; the full text is in
+// THIRD_PARTY_NOTICES.md. Tufted's <head> can't be extended, so this copy adds a
+// description and Open Graph / Twitter tags, which make link
+// previews (WhatsApp, Signal, Discord...) show a title, description and image.
+// `path` is the page's URL path, e.g. "/projects/", passed in by the Makefile
+// as `--input path=...`.
+#let page(
+  header-links: none,
+  title: "",
+  lang: "en",
+  css: (),
+  description: default-description,
+  path: sys.inputs.at("path", default: none),
+  content,
+) = {
+  show: template-math
+  show: template-refs
+  show: template-notes
+  show: template-figures
+
+  set text(lang: lang)
+
+  let meta(key, value, content) = html.elem("meta", attrs: ((key): value, content: content))
+  html.html(lang: lang, {
+    html.head({
+      html.meta(charset: "utf-8")
+      html.meta(name: "viewport", content: "width=device-width, initial-scale=1")
+      html.title(title)
+      html.meta(name: "description", content: description)
+      meta("property", "og:type", "website")
+      meta("property", "og:site_name", "Narendra S | Engliz")
+      meta("property", "og:title", title)
+      meta("property", "og:description", description)
+      if path != none { meta("property", "og:url", site-url + path) }
+      meta("property", "og:image", site-url + "/og.png")
+      meta("property", "og:image:width", "1200")
+      meta("property", "og:image:height", "630")
+      meta("name", "twitter:card", "summary_large_image")
+      for css-link in css { html.link(rel: "stylesheet", href: css-link) }
+    })
+    html.body({
+      make-header(header-links)
+      html.article(html.section(content))
+    })
+  })
+}
+
 // Wraps tufted's template and adds the light/dark toggle script
 // (assets/theme.js, which attaches a button to the page header) and the
 // license footer.
 #let template(content, ..args) = {
   let named = args.named()
   let reserved = named.remove("reserved", default: false)
-  tufted.tufted-web(
+  page(
     ..(
       header-links: (
         "/": "Home",

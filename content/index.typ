@@ -1,7 +1,7 @@
 #import "../config.typ": template, tufted
 #import "../resume/contact.typ": email, github, linkedin, name, phone
 #import "../link-icons.typ": with-icons
-#show: template
+#show: template.with(description: "Narendra Sampath Kumar (Engliz): CS student into systems, cloud infrastructure, NixOS and CTFs.")
 #show: with-icons
 
 = Me

@@ -6,6 +6,7 @@
 
 #let cool-page(title: none, summary: none, body) = template(
   title: title,
+  description: summary,
   {
     show: with-icons
     link("/cool-stuff/")[← Cool stuff]

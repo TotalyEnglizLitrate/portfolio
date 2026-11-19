@@ -31,6 +31,9 @@ terms):
 
   - assets/tufted.css: from Tufted, Copyright (c) 2025 Vsevolod Shegolev,
     MIT License (https://github.com/vsheg/tufted).
+  - the `page` function in config.typ: derived from Tufted's `tufted-web`,
+    same copyright and MIT License as above. The rest of config.typ is
+    covered by the license below.
   - Icon shapes for phone, mail, GitHub, LinkedIn, link, sun and moon, in
     link-icons.typ and assets/theme.js: from Feather, Copyright (c) 2013-2023
     Cole Bemis, MIT License (https://github.com/feathericons/feather).

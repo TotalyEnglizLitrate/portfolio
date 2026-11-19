@@ -1,7 +1,7 @@
 #import "../../config.typ": template
 #import "../../link-icons.typ": with-icons
 #import "_pages.typ": pages
-#show: template.with(title: "Cool stuff")
+#show: template.with(title: "Cool stuff", description: "Tools, setups and tidbits I find cool and think more people should know about.")
 #show: with-icons
 
 = Cool stuff

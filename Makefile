@@ -12,13 +12,18 @@ HTML_FILES := $(patsubst content/%.typ,_site/%.html,$(TYP_FILES))
 # The main target 'html' depends on all generated HTML files and assets
 html: $(HTML_FILES) assets resume
 
+# URL path of a built page: _site/projects/index.html -> /projects/,
+# _site/404.html -> /404.html
+urlpath = $(patsubst %index.html,%,$(patsubst _site/%,/%,$(1)))
+
 # Pattern rule to compile .typ files to .html files
 # $< is the first prerequisite (the .typ file)
 # $@ is the target (the .html file)
 # $(@D) is the directory part of the target
 _site/%.html: content/%.typ
 	@mkdir -p $(@D)
-	typst compile --root .. --features html --format html $< $@
+	typst compile --root .. --features html --format html \
+		--input path=$(call urlpath,$@) $< $@
 	@# Tufte emits the nav links with no whitespace between them, so text browsers
 	@# (lynx, w3m) run them together; add a space (invisible in the flex layout).
 	@sed -i 's#</a><a href#</a> <a href#g' $@
@@ -63,8 +68,13 @@ resume: $(FONT_FILES)
 	@mkdir -p _site/assets
 	typst compile --font-path fonts resume/resume.typ _site/assets/resume.pdf
 
+# Rebuild the link-preview image (static/og.png) from scripts/og.typ. The PNG is
+# committed, so the normal build doesn't need this; run it after editing the source.
+og:
+	typst compile --format png --ppi 72 scripts/og.typ static/og.png
+
 # A clean rule to remove generated files
 clean:
 	rm -rf _site/*
 
-.PHONY: html clean assets resume fonts
+.PHONY: html clean assets resume fonts og

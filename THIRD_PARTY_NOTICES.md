@@ -7,7 +7,8 @@ repository.
 
 ## Tufted
 
-Used in: `assets/tufted.css` (copied from the Tufted template).
+Used in: `assets/tufted.css` (copied from the Tufted template) and the `page`
+function in `config.typ` (derived from Tufted's `tufted-web`).
 Source: <https://github.com/vsheg/tufted>
 License: MIT
 
