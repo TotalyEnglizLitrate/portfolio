@@ -1,10 +1,12 @@
-#import "../_layout.typ": cool-page
+#import "../_layout.typ": cool-page, on-this-page
 // Title and summary: shown on this page and on the Cool stuff index.
 #let title = "Bet you didn't know ..."
 #let summary = "Underrated tools/tidbits of information that I feel more people should know of"
-#show: cool-page.with(title: title, summary: summary, toc: true)
+#show: cool-page.with(title: title, summary: summary)
 
 Tools and tricks that deserve more attention than they get. A lot of them turned up while working on my NixOS configuration and my own projects.
+
+#on-this-page()
 
 == Stop your laptop sleeping during a command (`systemd-inhibit`)
 
