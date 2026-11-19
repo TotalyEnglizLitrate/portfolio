@@ -1,16 +1,30 @@
 #import "../config.typ": template, tufted
-#import "../resume/contact.typ": name, phone, email, linkedin, github
+#import "../resume/contact.typ": email, github, linkedin, name, phone
 #import "../link-icons.typ": with-icons
 #show: template
 #show: with-icons
 
 = Me
 
-#let about(..rows) = html.elem("table", attrs: (style: "width: 100%; border-collapse: collapse; font-size: 1.4rem; line-height: 2rem;"),
+#let about(..rows) = html.elem(
+  "table",
+  attrs: (
+    style: "width: 100%; border-collapse: collapse; font-size: 1.4rem; line-height: 2rem;",
+  ),
   html.elem("tbody", for (k, v) in rows.pos() {
     html.elem("tr", {
-      html.elem("th", attrs: (style: "text-align: left; vertical-align: top; padding: 0.3rem 1.5rem 0.3rem 0; white-space: nowrap;"), k + [:])
-      html.elem("td", attrs: (style: "vertical-align: top; padding: 0.3rem 0;"), v)
+      html.elem(
+        "th",
+        attrs: (
+          style: "text-align: left; vertical-align: top; padding: 0.3rem 1.5rem 0.3rem 0; white-space: nowrap;",
+        ),
+        k + [:],
+      )
+      html.elem(
+        "td",
+        attrs: (style: "vertical-align: top; padding: 0.3rem 0;"),
+        v,
+      )
     })
   }),
 )
@@ -22,11 +36,17 @@ Hi, I'm #name.text.split(" ").first(). I like building backend systems, infrastr
   ([Pseudonym], [TotalyEnglizLitrate, Engliz]),
   ([Studying], [B.Tech Computer Science & Engineering (Cybersecurity)]),
   ([At], [Shiv Nadar University, Chennai]),
-  ([Open source], [
-    #link("https://github.com/noctalia-dev/noctalia/pulls?q=is%3Apr+is%3Amerged+author%3ATotalyEnglizLitrate")[13 merged PRs in Noctalia],
-    plus #link("https://github.com/search?q=author%3ATotalyEnglizLitrate+is%3Amerged+-user%3ATotalyEnglizLitrate+-repo%3Anoctalia-dev%2Fnoctalia+-repo%3Ar-ethan18%2FSupport-Ticketing-System&type=pullrequests")[nixpkgs, stylix and other misc projects]
-  ]),
-  ([Community], [Coding Club cybersecurity vertical (\@ SNUC), Python Discord staff]),
+  (
+    [Open source],
+    [
+      #link("https://github.com/noctalia-dev/noctalia/pulls?q=is%3Apr+is%3Amerged+author%3ATotalyEnglizLitrate")[13 merged PRs in Noctalia],
+      plus #link("https://github.com/search?q=author%3ATotalyEnglizLitrate+is%3Amerged+-user%3ATotalyEnglizLitrate+-repo%3Anoctalia-dev%2Fnoctalia+-repo%3Ar-ethan18%2FSupport-Ticketing-System&type=pullrequests")[nixpkgs, stylix and other misc projects]
+    ],
+  ),
+  (
+    [Community],
+    [Coding Club cybersecurity vertical (\@ SNUC), Python Discord staff],
+  ),
   ([Looking for], [Summer ’27 internship]),
 )
 

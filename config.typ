@@ -2,13 +2,17 @@
 
 // Cache-busting: append the file's size to asset URLs, so an edited file is
 // re-fetched instead of served from a browser/CDN cache.
-#let versioned(path) = "/" + path + "?v=" + str(read(path, encoding: none).len())
+#let versioned(path) = (
+  "/" + path + "?v=" + str(read(path, encoding: none).len())
+)
 
 #let footer-style = "margin-top: 4rem; font-size: 1.1rem; opacity: 0.7;"
 
 // Footer shown on every page. Pages excluded from the CC license (the resume)
 // pass `reserved: true` to the template.
-#let license-footer(reserved) = html.elem("footer", attrs: (style: footer-style))[
+#let license-footer(reserved) = html.elem("footer", attrs: (
+  style: footer-style,
+))[
   #if reserved [
     © 2026 Narendra Sampath Kumar. All rights reserved. This page is excluded
     from the site's license.
@@ -49,7 +53,8 @@
         versioned("assets/custom.css"),
         versioned("assets/theme.css"),
       ),
-    ) + named,
+    )
+      + named,
     {
       html.elem("script", attrs: (src: versioned("assets/theme.js")))
       content
