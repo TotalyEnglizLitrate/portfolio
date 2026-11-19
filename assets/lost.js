@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: MIT
 // 404 page: the "Take cookie" button. ("Take me home" is a plain link.)
 document.addEventListener("DOMContentLoaded", function () {
   var cookie = document.getElementById("cookie");

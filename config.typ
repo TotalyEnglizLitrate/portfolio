@@ -15,7 +15,8 @@
   ] else [
     © 2026 Narendra Sampath Kumar. Licensed under
     #link("https://creativecommons.org/licenses/by-sa/4.0/")[CC BY-SA 4.0],
-    except the resume.
+    except the resume. The Makefile, scripts and custom styles are under the
+    #link("https://opensource.org/license/mit")[MIT license].
   ]
   #html.elem("div")[
     Source on #link("https://github.com/TotalyEnglizLitrate/portfolio")[GitHub].

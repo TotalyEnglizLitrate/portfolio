@@ -1,3 +1,4 @@
+# SPDX-License-Identifier: MIT
 # Find all .typ files in content/ that don't start with an underscore in their path
 TYP_FILES := $(shell find content -name '*.typ' -not -path '*/_*')
 

@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: MIT
 // Favicons. The template has no <head> hook, so add the links from here; the
 // plain /favicon.ico at the site root covers browsers without JavaScript.
 (function () {
