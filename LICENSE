@@ -20,6 +20,7 @@ MIT-LICENSED (instead of CC BY-SA; the MIT License text is at the end of this
 file):
 
   - Makefile
+  - flake.nix and flake.lock (the Nix dev shell)
   - assets/theme.js and assets/lost.js, except the Feather icon shapes noted
     below, which keep Feather's own MIT terms.
   - assets/theme.css and assets/custom.css (assets/tufted.css is third-party,
