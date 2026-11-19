@@ -111,6 +111,20 @@ header nav a { white-space: nowrap; }
   header { grid-template-columns: 1fr auto; row-gap: 0.4rem; }
   #theme-toggle { grid-column: 2; }
   #made-with { grid-column: 1 / -1; grid-row: 2; text-align: right; }
+  /* Keep the nav on a single line: the font scales with the viewport (capped
+     at its desktop size) and the link spacing shrinks with it. */
+  header > nav { flex-wrap: nowrap; gap: 0.2em; }
+  header nav a,
+  header nav a:link,
+  header nav a:visited {
+    font-size: min(1.5rem, calc(6vw - 8px));
+    padding: 0.2em 0.3em;
+  }
+  /* Link-icon links are nowrap, which pushes long ones (like the home page's
+     "Open source" row) past the right edge; let them wrap on phones. */
+  td a,
+  td a:link,
+  td a:visited { white-space: normal !important; }
 }
 
 /* 404 page: the cookie and its two buttons */
