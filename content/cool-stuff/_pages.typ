@@ -7,6 +7,7 @@
 #let slugs = (
   "tools",
   "idk",
+  "underrated",
 )
 
 #let load(slug) = {
