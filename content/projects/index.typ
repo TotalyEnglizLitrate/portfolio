@@ -1,6 +1,6 @@
 #import "../../config.typ": template, tufted
 #import "../../link-icons.typ": with-icons
-#show: template.with(title: "Projects", description: "Open source projects by Narendra: foodie, nixcu, nix-config, juno.nvim and more.")
+#show: template.with(title: "Projects", description: "FOSS projects I made")
 #show: with-icons
 
 = Projects
