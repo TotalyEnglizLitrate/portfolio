@@ -43,6 +43,15 @@ You can find more at the #link("https://github.com/nix-community/awesome-nix")[A
 - #link("https://gitlab.freedesktop.org/rncbc/qpwgraph")[qpwgraph]: a graph view of everything PipeWire is routing. Drag cables between apps and devices to decide where each sound goes. Extremely handy for connecting multiple devices to the same audio source.
 - #link("https://sr.ht/~emersion/kanshi/")[kanshi]: automatic display layouts for Wayland. I define profiles, such as docked with the laptop screen off or the external monitor extended to the right, and it applies the matching one whenever I plug in or unplug a monitor.
 
+== Making Windows usable
+
+When I have to use Windows, these make it bearable.
+
+- #link("https://www.autohotkey.com")[AutoHotkey]: a scripting language for remapping keys and automating anything repetitive, so Windows gets the shortcuts it should have shipped with.
+- #link("https://github.com/Klocman/Bulk-Crap-Uninstaller")[Bulk Crap Uninstaller]: removes unwanted programs in bulk and cleans up the leftover files and registry entries that the regular uninstaller leaves behind.
+- #link("https://windhawk.net")[Windhawk]: a catalogue of small mods for customizing the Windows interface, from the taskbar to the Start menu, without replacing the shell.
+- #link("https://github.com/ChrisTitusTech/winutil")[Chris Titus's WinUtil]: a one-script tool for debloating Windows, applying tweaks and installing apps in one go.
+
 == Websites
 
 - #link("https://time.is")[time.is]: a quick time lookup where the URL is the query. Put a timezone, city or country after the slash, for example #link("https://time.is/Tokyo")[time.is/Tokyo], and you get the current time there.
