@@ -48,6 +48,7 @@ You can find more at the #link("https://github.com/nix-community/awesome-nix")[A
 
 - #link("https://time.is")[time.is]: a quick time lookup where the URL is the query. Put a timezone, city or country after the slash, for example #link("https://time.is/Tokyo")[time.is/Tokyo], and you get the current time there.
 - #link("https://bitwarden.garudalinux.org")[bitwarden.garudalinux.org]: a free #link("https://github.com/dani-garcia/vaultwarden")[Vaultwarden] host run by the Garuda Linux project, so you get a Bitwarden-compatible password manager without hosting anything yourself.
+- #link("https://www.seedr.cc")[seedr.cc] and #link("https://torbox.app")[TorBox]: torrenting on the go. They fetch the torrent on their servers, so I can grab the finished files over a normal download from any device without running a torrent client.
 
 == Making Windows usable
 
