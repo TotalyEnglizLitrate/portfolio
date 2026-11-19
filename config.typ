@@ -46,7 +46,7 @@
         "/projects/": "Projects",
         "/cool-stuff/": "Cool stuff",
       ),
-      title: "Portfolio",
+      title: "Narendra S | Engliz",
       css: (
         "https://cdnjs.cloudflare.com/ajax/libs/tufte-css/1.8.0/tufte.min.css",
         "/assets/tufted.css",
