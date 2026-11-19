@@ -10,11 +10,20 @@ _site/cool-stuff/index.html: content/cool-stuff/_pages.typ $(wildcard content/co
 HTML_FILES := $(patsubst content/%.typ,_site/%.html,$(TYP_FILES))
 
 # The main target 'html' depends on all generated HTML files and assets
-html: $(HTML_FILES) assets resume
+html: $(HTML_FILES) _site/sitemap.xml assets resume
 
 # URL path of a built page: _site/projects/index.html -> /projects/,
 # _site/404.html -> /404.html
 urlpath = $(patsubst %index.html,%,$(patsubst _site/%,/%,$(1)))
+
+# sitemap.xml lists every page except the 404 and the resume (disallowed in robots.txt).
+_site/sitemap.xml: $(HTML_FILES)
+	@{ echo '<?xml version="1.0" encoding="UTF-8"?>'; \
+	  echo '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'; \
+	  for f in $(filter-out _site/404.html _site/resume/index.html,$(HTML_FILES)); do \
+	    echo "  <url><loc>https://engliz.dev$$(echo $$f | sed -e 's#^_site##' -e 's#index\.html$$##')</loc></url>"; \
+	  done; \
+	  echo '</urlset>'; } > $@
 
 # Pattern rule to compile .typ files to .html files
 # $< is the first prerequisite (the .typ file)

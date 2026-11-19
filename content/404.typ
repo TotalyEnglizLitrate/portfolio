@@ -1,5 +1,5 @@
 #import "../config.typ": template, versioned
-#show: template.with(title: "Page not found", description: "This page does not exist.")
+#show: template.with(title: "Page not found", noindex: true, description: "This page does not exist.")
 
 // Behaviour of the two buttons lives in assets/lost.js
 #html.elem("script", attrs: (src: versioned("assets/lost.js")))

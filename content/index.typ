@@ -1,7 +1,17 @@
 #import "../config.typ": template, tufted
 #import "../resume/contact.typ": email, github, linkedin, name, phone
 #import "../link-icons.typ": with-icons
-#show: template.with(description: name.text + " (Engliz): CS student into systems, tooling, backend, NixOS and CTFs.")
+#show: template.with(
+  json-ld: (
+    "@context": "https://schema.org",
+    "@type": "Person",
+    name: name.text,
+    alternateName: "Engliz",
+    url: "https://engliz.dev",
+    sameAs: (github.dest, linkedin.dest),
+  ),
+  description: name.text + " (Engliz): CS student into systems, tooling, backend, NixOS and CTFs.",
+)
 #show: with-icons
 
 = Me

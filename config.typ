@@ -3,7 +3,7 @@
   make-header, template-figures, template-math, template-notes, template-refs,
 )
 
-#import "resume/contact.typ": name
+#import "resume/contact.typ": github, linkedin, name
 
 #let site-url = "https://engliz.dev"
 #let default-description = name.text + "'s portfolio: resume, projects and cool stuff."
@@ -55,7 +55,8 @@
 // description and Open Graph / Twitter tags, which make link
 // previews (WhatsApp, Signal, Discord...) show a title, description and image.
 // `path` is the page's URL path, e.g. "/projects/", passed in by the Makefile
-// as `--input path=...`.
+// as `--input path=...`. `noindex` keeps a page out of search results (404).
+// `json-ld` is an optional dictionary embedded as schema.org structured data.
 #let page(
   header-links: none,
   title: "",
@@ -63,6 +64,8 @@
   css: (),
   description: default-description,
   path: sys.inputs.at("path", default: none),
+  noindex: false,
+  json-ld: none,
   content,
 ) = {
   show: template-math
@@ -83,7 +86,14 @@
       meta("property", "og:site_name", short-name + " | Engliz")
       meta("property", "og:title", title)
       meta("property", "og:description", description)
-      if path != none { meta("property", "og:url", site-url + path) }
+      if path != none and not noindex {
+        meta("property", "og:url", site-url + path)
+        html.link(rel: "canonical", href: site-url + path)
+      }
+      if noindex { html.meta(name: "robots", content: "noindex") }
+      if json-ld != none {
+        html.elem("script", attrs: (type: "application/ld+json"), json.encode(json-ld))
+      }
       meta("property", "og:image", site-url + "/og.png")
       meta("property", "og:image:width", "1200")
       meta("property", "og:image:height", "630")
