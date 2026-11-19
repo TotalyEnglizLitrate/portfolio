@@ -2,7 +2,7 @@
 // Title and summary: shown on this page and on the Cool stuff index.
 #let title = "Bet you didn't know ..."
 #let summary = "Underrated tools/tidbits of information that I feel more people should know of"
-#show: cool-page.with(title: title, summary: summary)
+#show: cool-page.with(title: title, summary: summary, toc: true)
 
 Tools and tricks that deserve more attention than they get. A lot of them turned up while working on my NixOS configuration and my own projects.
 

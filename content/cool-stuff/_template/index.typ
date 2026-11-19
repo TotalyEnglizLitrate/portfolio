@@ -6,7 +6,8 @@
 // Title and summary: shown on this page and on the Cool stuff index.
 #let title = "Page title"
 #let summary = "One line describing this page."
-#show: cool-page.with(title: title, summary: summary)
+// Set toc to true to add an "On this page" index linking to each `==` section.
+#show: cool-page.with(title: title, summary: summary, toc: false)
 
 Write the page here, in normal Typst markup.
 

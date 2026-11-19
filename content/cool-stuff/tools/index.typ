@@ -2,7 +2,7 @@
 // Title and summary: shown on this page and on the Cool stuff index.
 #let title = "Tools I use"
 #let summary = "Software, setups and workflows I rely on day to day."
-#show: cool-page.with(title: title, summary: summary)
+#show: cool-page.with(title: title, summary: summary, toc: true)
 
 The tools I use every day, from command-line programs to desktop tweaks. Most are set up through my NixOS configuration so every machine of mine behaves the same; the Windows section at the end covers the exception.
 
