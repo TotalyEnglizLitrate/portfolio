@@ -1,18 +1,4 @@
 // SPDX-License-Identifier: MIT
-// Favicons. The template has no <head> hook, so add the links from here; the
-// plain /favicon.ico at the site root covers browsers without JavaScript.
-(function () {
-  [
-    { rel: "icon", href: "/favicon.ico", sizes: "32x32" },
-    { rel: "icon", href: "/favicon.svg", type: "image/svg+xml" },
-    { rel: "apple-touch-icon", href: "/apple-touch-icon.png" },
-  ].forEach(function (attrs) {
-    var link = document.createElement("link");
-    Object.keys(attrs).forEach(function (k) { link.setAttribute(k, attrs[k]); });
-    document.head.appendChild(link);
-  });
-})();
-
 // Light/dark toggle. Picks the saved choice, else the OS preference.
 (function () {
   var root = document.documentElement;

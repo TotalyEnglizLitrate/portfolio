@@ -94,6 +94,9 @@
       if json-ld != none {
         html.elem("script", attrs: (type: "application/ld+json"), json.encode(json-ld))
       }
+      html.elem("link", attrs: (rel: "icon", href: "/favicon.ico", sizes: "32x32"))
+      html.link(rel: "icon", href: "/favicon.svg", type: "image/svg+xml")
+      html.elem("link", attrs: (rel: "apple-touch-icon", href: "/apple-touch-icon.png"))
       meta("property", "og:image", site-url + "/og.png")
       meta("property", "og:image:width", "1200")
       meta("property", "og:image:height", "630")
