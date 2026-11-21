@@ -2,7 +2,7 @@
   "prerender": [
     {
       "where": { "href_matches": "/*" },
-      "eagerness": "moderate"
+      "eagerness": "immediate"
     }
   ]
 }
