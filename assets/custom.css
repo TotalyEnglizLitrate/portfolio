@@ -37,5 +37,11 @@ section div > h4 {
   margin: 1rem 0 0;
 }
 
+/* Smooth-scroll to in-page anchors (e.g. "On this page" links) */
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+}
+
 /* Smooth cross-document page transitions (Chromium; ignored elsewhere) */
 @view-transition { navigation: auto; }
