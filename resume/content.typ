@@ -67,7 +67,7 @@
     #items(
       [Terminal-emulator CTF platform (Next.js, Supabase) hosting SNUC Coding Club competitions],
       [Active userbase of #approx 1000],
-      [Rebuilt the in-browser CLI on cmd-ts with path tab-completion and tabulated output; added lazy file loading and bundled #box[challenge/hint] caching to cut round-trips],
+      [Rebuilt the in-browser CLI on cmd-ts with tab-completion and tabulated output; added lazy fetching and caching to cut round-trips],
       [Hardened the flag-submission API with server-side validation and error handling],
     )
     #projheading(
@@ -79,7 +79,20 @@
     #items(
       [Leverages Swiggy/Zomato's MCPs to provide a full fledged ordering experience],
       [Allows comparison of prices across the two providers],
-      [Full ordering flow in the terminal: cart, UPI QR or cash-on-delivery payment, and order tracking, with credentials kept in the system keyring],
+      [Full ordering flow in the terminal: cart, UPI QR or cash-on-delivery payment, and order tracking, with credentials in the system keyring],
+      [Kitty TGP integration for images on supported terminals],
+    )
+    #projheading(
+      [*NullForm* #bar #emph[TypeScript, React, Supabase, Semaphore, zk-SNARKs]],
+      [#link("https://github.com/TotalyEnglizLitrate/nullform")[GitHub] #bar #link("https://nullform.engliz.dev")[Site]],
+      [Designer/Developer],
+      [Nov. 2026 -- Present],
+    )
+    #items(
+      [Anonymous forms for verified users: Groth16 zero-knowledge membership proofs, preventing duplicate submissions via nullifiers],
+      [Anonymous by design, not by promise],
+      [Browser-side proving in a Web Worker; public audit page re-verifies receipts and a Sepolia anchor],
+      [Serverless backend on Vercel functions and Supabase, with row-level security policies],
     )
     #projheading(
       [*Merklin* #bar #emph[Python, FastAPI, Merkle trees, cryptography, Firestore]],
@@ -92,19 +105,6 @@
       [Client package with websocket log transport, key management, and a CLI],
       [Server package with challenge generator/verifier, email alerts and authentication],
     )
-    #projheading(
-      [*NixOS Configuration* #bar #emph[Nix flakes, Home-Manager, Packaging]],
-      [#link("https://github.com/TotalyEnglizLitrate/nix-config")[GitHub]],
-      [Developer],
-      [Feb. 2025 -- Present],
-    )
-    #items(
-      [Built a flake-based NixOS/Home Manager platform for 4 machines with 20+ reusable modules],
-      [Designed typed host metadata to adapt configuration to GPUs, displays, VRR, laptops, and biometrics],
-      [Packaged custom software and overlays, including Neovim and PAM fingerprint authentication.],
-      [Automated hardware-specific features including ROCm, IR/fingerprint login, input remapping, and virtual cameras.],
-    )
-
     // ---------------- achievements ----------------
     #section(before: 6.5pt)[Achievements & Honours]
     #gap(2pt)

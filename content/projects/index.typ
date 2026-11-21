@@ -5,6 +5,10 @@
 
 = Projects
 
+== NullForm
+
+Authenticated, anonymous forms: only eligible signed-in users can register, then answers are submitted anonymously with a Semaphore zero-knowledge proof. #link("https://github.com/TotalyEnglizLitrate/nullform")[GitHub] #link("https://nullform.engliz.dev")[Site]
+
 == foodie
 
 A unified Swiggy/Zomato TUI using their respective MCPs. #link("https://github.com/TotalyEnglizLitrate/foodie")[GitHub]
