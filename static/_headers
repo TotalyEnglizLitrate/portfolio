@@ -1,9 +1,17 @@
 # Security headers for every page (Cloudflare Workers static assets).
 # 'unsafe-inline' for styles is needed for the inline style attributes the
 # resume and tables use; scripts are limited to our own /assets/theme.js.
-# Caching is left at Cloudflare's default (revalidate with ETags) on purpose.
+# Caching is left at Cloudflare's default (revalidate with ETags) on purpose,
+# except for self-hosted fonts below, which never change once published.
 /*
   X-Content-Type-Options: nosniff
   Referrer-Policy: strict-origin-when-cross-origin
   Permissions-Policy: camera=(), microphone=(), geolocation=(), interest-cohort=()
   Content-Security-Policy: default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; font-src 'self' https://cdnjs.cloudflare.com; img-src 'self' data:; object-src 'none'; base-uri 'self'; form-action 'none'; frame-ancestors 'none'
+  Speculation-Rules: "/speculation-rules.json"
+
+/speculation-rules.json
+  Content-Type: application/speculationrules+json
+
+/fonts/*
+  Cache-Control: public, max-age=31536000, immutable

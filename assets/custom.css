@@ -36,3 +36,6 @@ pre > code {
 section div > h4 {
   margin: 1rem 0 0;
 }
+
+/* Smooth cross-document page transitions (Chromium; ignored elsewhere) */
+@view-transition { navigation: auto; }
