@@ -138,6 +138,7 @@
       + named,
     {
       html.elem("script", attrs: (src: versioned("assets/theme.js")))
+      html.elem("script", attrs: (src: versioned("assets/nav.js"), defer: ""))
       content
       license-footer(reserved)
     },
