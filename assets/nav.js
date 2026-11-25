@@ -53,7 +53,10 @@
     if (!doc || headSig(doc) !== sig) return false;
     var scripts = doc.body.querySelectorAll("script");
     for (var i = 0; i < scripts.length; i++) {
-      if (!OWN.test(scripts[i].getAttribute("src") || "")) return false;
+      var src = scripts[i].getAttribute("src");
+      // Inline scripts are ignored: our pages have none, but Cloudflare injects
+      // one (bot detection) at the end of every page.
+      if (src && !OWN.test(src)) return false;
     }
     return !!doc.body.querySelector("header");
   }
