@@ -10,7 +10,7 @@ _site/cool-stuff/index.html: content/cool-stuff/_pages.typ $(wildcard content/co
 HTML_FILES := $(patsubst content/%.typ,_site/%.html,$(TYP_FILES))
 
 # The main target 'html' depends on all generated HTML files and assets
-html: $(HTML_FILES) _site/sitemap.xml assets resume
+html: $(HTML_FILES) _site/sitemap.xml _site/_redirects assets resume
 
 # URL path of a built page: _site/projects/index.html -> /projects/,
 # _site/404.html -> /404.html
@@ -24,6 +24,17 @@ _site/sitemap.xml: $(HTML_FILES)
 	    echo "  <url><loc>https://engliz.dev$$(echo $$f | sed -e 's#^_site##' -e 's#index\.html$$##')</loc></url>"; \
 	  done; \
 	  echo '</urlset>'; } > $@
+
+# Every page is built as <dir>/index.html and served at /<dir>/. Cloudflare's
+# default redirect from /<dir> to /<dir>/ is a temporary (307) one, so list
+# them here as permanent (301) redirects, which search engines treat as a
+# lasting move to the trailing-slash URL. (Generated, not hand-written, so a new
+# page is covered automatically; the homepage and 404 need none.)
+_site/_redirects: $(HTML_FILES)
+	@for f in $(filter-out _site/404.html _site/index.html,$(HTML_FILES)); do \
+	  p=$$(echo $$f | sed -e 's#^_site##' -e 's#/index\.html$$##'); \
+	  echo "$$p $$p/ 301"; \
+	done > $@
 
 # Pattern rule to compile .typ files to .html files
 # $< is the first prerequisite (the .typ file)

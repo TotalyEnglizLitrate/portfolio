@@ -7,6 +7,9 @@
   "assets": {
     "directory": "./_site",
     // Serve 404.html (built from content/404.typ) for unknown URLs
-    "not_found_handling": "404-page"
+    "not_found_handling": "404-page",
+    // Pages live at /<dir>/ (built as <dir>/index.html); /<dir> redirects
+    // there. The 301s themselves come from _site/_redirects (see Makefile).
+    "html_handling": "force-trailing-slash"
   }
 }
