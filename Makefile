@@ -9,8 +9,19 @@ _site/cool-stuff/index.html: content/cool-stuff/_pages.typ $(wildcard content/co
 # Generate corresponding HTML file paths in _site/
 HTML_FILES := $(patsubst content/%.typ,_site/%.html,$(TYP_FILES))
 
+# Pages are built as <dir>/index.html and served at /<dir>/. Cloudflare answers
+# /<dir> with a redirect to /<dir>/ unless a <dir>.html file exists, in which
+# case it serves that directly. So emit a copy of each page at <dir>.html:
+# /<dir> and /<dir>/ both return 200 with no redirect, and the canonical tag
+# (always the trailing-slash URL) tells search engines which one to index.
+# The homepage and 404 need no copy. The copies are not listed in the sitemap.
+SLASHLESS_FILES := $(patsubst %/index.html,%.html,$(filter-out _site/index.html,$(filter %/index.html,$(HTML_FILES))))
+
+_site/%.html: _site/%/index.html
+	@cp $< $@
+
 # The main target 'html' depends on all generated HTML files and assets
-html: $(HTML_FILES) _site/sitemap.xml _site/_redirects assets resume
+html: $(HTML_FILES) $(SLASHLESS_FILES) _site/sitemap.xml assets resume
 
 # URL path of a built page: _site/projects/index.html -> /projects/,
 # _site/404.html -> /404.html
@@ -24,17 +35,6 @@ _site/sitemap.xml: $(HTML_FILES)
 	    echo "  <url><loc>https://engliz.dev$$(echo $$f | sed -e 's#^_site##' -e 's#index\.html$$##')</loc></url>"; \
 	  done; \
 	  echo '</urlset>'; } > $@
-
-# Every page is built as <dir>/index.html and served at /<dir>/. Cloudflare's
-# default redirect from /<dir> to /<dir>/ is a temporary (307) one, so list
-# them here as permanent (301) redirects, which search engines treat as a
-# lasting move to the trailing-slash URL. (Generated, not hand-written, so a new
-# page is covered automatically; the homepage and 404 need none.)
-_site/_redirects: $(HTML_FILES)
-	@for f in $(filter-out _site/404.html _site/index.html,$(HTML_FILES)); do \
-	  p=$$(echo $$f | sed -e 's#^_site##' -e 's#/index\.html$$##'); \
-	  echo "$$p $$p/ 301"; \
-	done > $@
 
 # Pattern rule to compile .typ files to .html files
 # $< is the first prerequisite (the .typ file)

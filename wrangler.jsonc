@@ -8,8 +8,8 @@
     "directory": "./_site",
     // Serve 404.html (built from content/404.typ) for unknown URLs
     "not_found_handling": "404-page",
-    // Pages live at /<dir>/ (built as <dir>/index.html); /<dir> redirects
-    // there. The 301s themselves come from _site/_redirects (see Makefile).
-    "html_handling": "force-trailing-slash"
+    // Pages are built as <dir>/index.html and, via the <dir>.html copies the
+    // Makefile emits, served at both /<dir> and /<dir>/ without a redirect.
+    "html_handling": "auto-trailing-slash"
   }
 }
